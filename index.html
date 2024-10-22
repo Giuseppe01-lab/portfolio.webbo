@@ -1,0 +1,794 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Webbo Portfolio</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                              linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+            background-size: 200px 200px;
+            overflow-x: hidden;
+            background-repeat: repeat; /* Ensure grid covers full page */
+        }
+
+        /* Updated Top bar styling with padding and time display */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.5); /* Increased transparency */
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5vw; /* Adjusted padding for proper alignment */
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1em; /* Reduced font size */
+            font-weight: bold; /* Bold text */
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .top-bar div {
+            flex: 1;
+            text-align: center;
+        }
+
+        .top-bar div.left {
+            text-align: left;
+        }
+
+        .top-bar div.right {
+            text-align: right;
+            margin-right: 10vw; /* Increased margin-right for more space */
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            height: 100vh;
+            padding-left: 5vw;
+            text-align: left;
+            color: #000;
+        }
+        .hero h1 {
+            font-family: 'Helvetica', sans-serif;
+            font-size: 6.5em; /* Increased font size */
+            margin: 0;
+            line-height: 1.2;
+            color: #000;
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #6a0dad;
+            background-color: rgba(106, 13, 173, 0.1);
+            padding: 0 5px;
+            border-radius: 3px;
+        }
+
+        .hero p {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.5em;
+            margin-top: 10px;
+            color: #000;
+            max-width: 600px;
+        }
+        .content {
+            padding: 50px;
+            font-family: 'Courier New', Courier, monospace;
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+        }
+
+        /* Custom CSS for the new heading layout */
+        .hero h1 .line {
+            display: block;
+        }
+
+        /* "Chi Sono" Section Styling */
+        .section-chi-sono {
+            padding: 50px;
+            margin: 20px 0;
+            font-family: 'Courier New', Courier, monospace; /* Typewriter style font */
+            font-size: 1.3em; /* Reduced body font size */
+            line-height: 1.6; /* Reduced line height */
+            width: 50%; /* Make the section 50% of the page width */
+            margin-left: auto; /* Align to the right */
+            text-align: justify; /* Justified text */
+            text-align-last: left; /* Last line aligned left */
+            background: none; /* Remove the white background */
+        }
+
+        .sezione h2 {
+            font-size: 2.5em; /* Increase title size */
+            color: #000; /* Set title color to black */
+            margin-bottom: 10px;
+        }
+
+    
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #0b0b0b; /* Even darker background */
+        color: #ffffff; /* White text for dark mode readability */
+    }
+
+    .top-bar {
+        background: rgba(255, 255, 255, 0.8); /* Keep top bar lighter */
+    }
+
+    .footer {
+        background: rgba(255, 255, 255, 0.8); /* Light footer */
+        border-top: 2px solid #6a0dad; /* Purple underline in footer */
+    }
+
+    .hero h1, .hero p {
+        color: #ffffff; /* Ensure text in the hero section is also white */
+    }
+
+    /* Specific styling for 'portfolio' and 'Webbo' */
+    .highlight-portfolio, .highlight-webbo {
+        color: #ffffff;
+        text-decoration: underline;
+        text-decoration-color: #00bfff; /* Light blue underline */
+    }
+}
+
+</style>
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('time').textContent = hours + ':' + minutes + ':' + seconds;
+        }
+
+        setInterval(updateTime, 1000);
+    </script>
+
+    <style>
+        /* Adjusting the right margin for alignment with the real-time clock in the top bar */
+        .section-chi-sono {
+            padding: 50px;
+            margin-left: 5vw; /* Maintain margin-left */
+            margin-right: 15vw; /* Adjusted margin-right to align with the clock */
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.3em;
+            line-height: 1.6;
+            width: auto; /* No fixed width */
+            text-align: justify;
+            text-align-last: left;
+            background: none;
+        }
+    
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #0b0b0b; /* Even darker background */
+        color: #ffffff; /* White text for dark mode readability */
+    }
+
+    .top-bar {
+        background: rgba(255, 255, 255, 0.8); /* Keep top bar lighter */
+    }
+
+    .footer {
+        background: rgba(255, 255, 255, 0.8); /* Light footer */
+        border-top: 2px solid #6a0dad; /* Purple underline in footer */
+    }
+
+    .hero h1, .hero p {
+        color: #ffffff; /* Ensure text in the hero section is also white */
+    }
+
+    /* Specific styling for 'portfolio' and 'Webbo' */
+    .highlight-portfolio, .highlight-webbo {
+        color: #ffffff;
+        text-decoration: underline;
+        text-decoration-color: #00bfff; /* Light blue underline */
+    }
+}
+
+</style>
+
+
+    <style>
+        /* Adjusting the right margin for proper alignment with the real-time clock in the top bar */
+        .section-chi-sono {
+            padding: 50px;
+            margin-left: auto; /* Shift left margin automatically */
+            margin-right: 10vw; /* Align right margin perfectly with the clock */
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.3em;
+            line-height: 1.6;
+            width: 50%; /* Ensure section width stays consistent */
+            text-align: justify;
+            text-align-last: left;
+            background: none;
+        }
+    
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #0b0b0b; /* Even darker background */
+        color: #ffffff; /* White text for dark mode readability */
+    }
+
+    .top-bar {
+        background: rgba(255, 255, 255, 0.8); /* Keep top bar lighter */
+    }
+
+    .footer {
+        background: rgba(255, 255, 255, 0.8); /* Light footer */
+        border-top: 2px solid #6a0dad; /* Purple underline in footer */
+    }
+
+    .hero h1, .hero p {
+        color: #ffffff; /* Ensure text in the hero section is also white */
+    }
+
+    /* Specific styling for 'portfolio' and 'Webbo' */
+    .highlight-portfolio, .highlight-webbo {
+        color: #ffffff;
+        text-decoration: underline;
+        text-decoration-color: #00bfff; /* Light blue underline */
+    }
+}
+
+</style>
+
+
+    <style>
+        /* Adjusting the right margin to bring the sections slightly closer to the right margin */
+        .section-chi-sono {
+            padding: 50px;
+            margin-left: auto; /* Maintain auto left margin */
+            margin-right: 7vw; /* Bring closer to the right margin */
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.3em;
+            line-height: 1.6;
+            width: 50%;
+            text-align: justify;
+            text-align-last: left;
+            background: none;
+        }
+    
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #0b0b0b; /* Even darker background */
+        color: #ffffff; /* White text for dark mode readability */
+    }
+
+    .top-bar {
+        background: rgba(255, 255, 255, 0.8); /* Keep top bar lighter */
+    }
+
+    .footer {
+        background: rgba(255, 255, 255, 0.8); /* Light footer */
+        border-top: 2px solid #6a0dad; /* Purple underline in footer */
+    }
+
+    .hero h1, .hero p {
+        color: #ffffff; /* Ensure text in the hero section is also white */
+    }
+
+    /* Specific styling for 'portfolio' and 'Webbo' */
+    .highlight-portfolio, .highlight-webbo {
+        color: #ffffff;
+        text-decoration: underline;
+        text-decoration-color: #00bfff; /* Light blue underline */
+    }
+}
+
+</style>
+
+
+    <style>
+        /* Adjusting the right margin to align the end of paragraphs with the seconds in the top bar */
+        .section-chi-sono {
+            padding: 50px;
+            margin-left: auto; /* Keep auto left margin */
+            margin-right: 5vw; /* Fine-tuned right margin to match the seconds */
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.3em;
+            line-height: 1.6;
+            width: 50%;
+            text-align: justify;
+            text-align-last: left;
+            background: none;
+        }
+    
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #0b0b0b; /* Even darker background */
+        color: #ffffff; /* White text for dark mode readability */
+    }
+
+    .top-bar {
+        background: rgba(255, 255, 255, 0.8); /* Keep top bar lighter */
+    }
+
+    .footer {
+        background: rgba(255, 255, 255, 0.8); /* Light footer */
+        border-top: 2px solid #6a0dad; /* Purple underline in footer */
+    }
+
+    .hero h1, .hero p {
+        color: #ffffff; /* Ensure text in the hero section is also white */
+    }
+
+    /* Specific styling for 'portfolio' and 'Webbo' */
+    .highlight-portfolio, .highlight-webbo {
+        color: #ffffff;
+        text-decoration: underline;
+        text-decoration-color: #00bfff; /* Light blue underline */
+    }
+}
+
+</style>
+
+
+    <style>
+        /* Smooth appearance for sections on scroll (fade-in from below) */
+        .section-chi-sono {
+            opacity: 0; /* Initially invisible */
+            transform: translateY(20px); /* Slightly shifted down */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Smooth transition */
+        }
+        
+        /* Once the section is visible on scroll */
+        .section-chi-sono.visible {
+            opacity: 1; /* Fully visible */
+            transform: translateY(0); /* Back to original position */
+        }
+
+        /* Hover effect on titles: color change and slight scaling */
+        .section-chi-sono h2:hover {
+            color: #6a0dad; /* Change color on hover */
+            transform: scale(1.05); /* Slight scale effect */
+            transition: color 0.3s ease-in, transform 0.3s ease-in;
+        }
+    
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #0b0b0b; /* Even darker background */
+        color: #ffffff; /* White text for dark mode readability */
+    }
+
+    .top-bar {
+        background: rgba(255, 255, 255, 0.8); /* Keep top bar lighter */
+    }
+
+    .footer {
+        background: rgba(255, 255, 255, 0.8); /* Light footer */
+        border-top: 2px solid #6a0dad; /* Purple underline in footer */
+    }
+
+    .hero h1, .hero p {
+        color: #ffffff; /* Ensure text in the hero section is also white */
+    }
+
+    /* Specific styling for 'portfolio' and 'Webbo' */
+    .highlight-portfolio, .highlight-webbo {
+        color: #ffffff;
+        text-decoration: underline;
+        text-decoration-color: #00bfff; /* Light blue underline */
+    }
+}
+
+</style>
+
+    <script>
+        // JavaScript to detect when sections come into view and apply the "visible" class for the transition effect
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.section-chi-sono');
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= window.innerHeight * 0.9) {
+                    section.classList.add('visible');
+                }
+            });
+        });
+    </script>
+
+
+    <style>
+        /* More pronounced smooth appearance for sections on scroll (fade-in and fade-out) */
+        .section-chi-sono {
+            opacity: 0; /* Initially invisible */
+            transform: translateY(40px); /* More pronounced shift down */
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out; /* Longer and smoother transition */
+        }
+        
+        /* When section becomes visible */
+        .section-chi-sono.visible {
+            opacity: 1; /* Fully visible */
+            transform: translateY(0); /* Back to original position */
+        }
+
+        /* Hover effect on titles: more pronounced scaling */
+        .section-chi-sono h2:hover {
+            color: #6a0dad; /* Change color on hover */
+            transform: scale(1.1); /* Slightly larger scale effect */
+            transition: color 0.3s ease-in, transform 0.3s ease-in;
+        }
+    
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #0b0b0b; /* Even darker background */
+        color: #ffffff; /* White text for dark mode readability */
+    }
+
+    .top-bar {
+        background: rgba(255, 255, 255, 0.8); /* Keep top bar lighter */
+    }
+
+    .footer {
+        background: rgba(255, 255, 255, 0.8); /* Light footer */
+        border-top: 2px solid #6a0dad; /* Purple underline in footer */
+    }
+
+    .hero h1, .hero p {
+        color: #ffffff; /* Ensure text in the hero section is also white */
+    }
+
+    /* Specific styling for 'portfolio' and 'Webbo' */
+    .highlight-portfolio, .highlight-webbo {
+        color: #ffffff;
+        text-decoration: underline;
+        text-decoration-color: #00bfff; /* Light blue underline */
+    }
+}
+
+</style>
+
+    <script>
+        // JavaScript to apply "visible" class for transition effect, and remove it when scrolling back up
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.section-chi-sono');
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= window.innerHeight * 0.9 && rect.bottom >= 0) {
+                    section.classList.add('visible');
+                } else {
+                    section.classList.remove('visible'); /* Fade-out when scrolling back up */
+                }
+            });
+        });
+    </script>
+
+
+    <style>
+        /* Alternating the alignment of sections: two right, two left */
+        .section-chi-sono:nth-child(odd) {
+            padding: 50px;
+            margin-left: auto; /* Align odd sections to the right */
+            margin-right: 5vw;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.3em;
+            line-height: 1.6;
+            width: 50%;
+            text-align: justify;
+            text-align-last: left;
+            background: none;
+        }
+
+        .section-chi-sono:nth-child(even) {
+            padding: 50px;
+            margin-left: 5vw; /* Align even sections to the left */
+            margin-right: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.3em;
+            line-height: 1.6;
+            width: 50%;
+            text-align: justify;
+            text-align-last: left;
+            background: none;
+        }
+    
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #0b0b0b; /* Even darker background */
+        color: #ffffff; /* White text for dark mode readability */
+    }
+
+    .top-bar {
+        background: rgba(255, 255, 255, 0.8); /* Keep top bar lighter */
+    }
+
+    .footer {
+        background: rgba(255, 255, 255, 0.8); /* Light footer */
+        border-top: 2px solid #6a0dad; /* Purple underline in footer */
+    }
+
+    .hero h1, .hero p {
+        color: #ffffff; /* Ensure text in the hero section is also white */
+    }
+
+    /* Specific styling for 'portfolio' and 'Webbo' */
+    .highlight-portfolio, .highlight-webbo {
+        color: #ffffff;
+        text-decoration: underline;
+        text-decoration-color: #00bfff; /* Light blue underline */
+    }
+}
+
+</style>
+
+
+    <style>
+        /* Button styling for light/dark mode toggle */
+        .mode-toggle {
+            background-color: #6a0dad;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .mode-toggle:hover {
+            background-color: #4e086f;
+        }
+
+        /* Light and dark mode styles */
+        body.light-mode {
+            background-color: #fff;
+            color: #333;
+        }
+        
+        body.dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+    
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #0b0b0b; /* Even darker background */
+        color: #ffffff; /* White text for dark mode readability */
+    }
+
+    .top-bar {
+        background: rgba(255, 255, 255, 0.8); /* Keep top bar lighter */
+    }
+
+    .footer {
+        background: rgba(255, 255, 255, 0.8); /* Light footer */
+        border-top: 2px solid #6a0dad; /* Purple underline in footer */
+    }
+
+    .hero h1, .hero p {
+        color: #ffffff; /* Ensure text in the hero section is also white */
+    }
+
+    /* Specific styling for 'portfolio' and 'Webbo' */
+    .highlight-portfolio, .highlight-webbo {
+        color: #ffffff;
+        text-decoration: underline;
+        text-decoration-color: #00bfff; /* Light blue underline */
+    }
+}
+
+</style>
+
+    <script>
+        // JavaScript function to toggle between light and dark mode
+        function toggleMode() {
+            const body = document.body;
+            if (body.classList.contains('light-mode')) {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+            } else {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+            }
+        }
+    </script>
+
+
+    <style>
+        /* Button styling: rounded borders, no fill, purple outline */
+        .mode-toggle {
+            background-color: transparent; /* No fill */
+            color: #6a0dad; /* Purple text */
+            border: 2px solid #6a0dad; /* Purple outline */
+            border-radius: 25px; /* Rounded borders */
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .mode-toggle:hover {
+            background-color: #6a0dad; /* Fill with purple on hover */
+            color: white; /* Change text color on hover */
+        }
+
+        /* Light and dark mode styles (same as before) */
+        body.light-mode {
+            background-color: #fff;
+            color: #333;
+        }
+        
+        body.dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+    
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #0b0b0b; /* Even darker background */
+        color: #ffffff; /* White text for dark mode readability */
+    }
+
+    .top-bar {
+        background: rgba(255, 255, 255, 0.8); /* Keep top bar lighter */
+    }
+
+    .footer {
+        background: rgba(255, 255, 255, 0.8); /* Light footer */
+        border-top: 2px solid #6a0dad; /* Purple underline in footer */
+    }
+
+    .hero h1, .hero p {
+        color: #ffffff; /* Ensure text in the hero section is also white */
+    }
+
+    /* Specific styling for 'portfolio' and 'Webbo' */
+    .highlight-portfolio, .highlight-webbo {
+        color: #ffffff;
+        text-decoration: underline;
+        text-decoration-color: #00bfff; /* Light blue underline */
+    }
+}
+
+</style>
+
+    <script>
+        // JavaScript function to toggle between light and dark mode (same as before)
+        function toggleMode() {
+            const body = document.body;
+            if (body.classList.contains('light-mode')) {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+            } else {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+            }
+        }
+    </script>
+
+
+    <style>
+        /* Updated dark mode styles */
+        body.dark-mode {
+            background-color: #333;
+            color: #fff; /* Change black text to white in dark mode */
+        }
+
+        /* Highlighted text in dark mode becomes light blue (same as in footer) */
+        body.dark-mode .highlight {
+            color: #00ccff;
+            background-color: rgba(0, 204, 255, 0.2); /* Light blue background */
+        }
+    
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #0b0b0b; /* Even darker background */
+        color: #ffffff; /* White text for dark mode readability */
+    }
+
+    .top-bar {
+        background: rgba(255, 255, 255, 0.8); /* Keep top bar lighter */
+    }
+
+    .footer {
+        background: rgba(255, 255, 255, 0.8); /* Light footer */
+        border-top: 2px solid #6a0dad; /* Purple underline in footer */
+    }
+
+    .hero h1, .hero p {
+        color: #ffffff; /* Ensure text in the hero section is also white */
+    }
+
+    /* Specific styling for 'portfolio' and 'Webbo' */
+    .highlight-portfolio, .highlight-webbo {
+        color: #ffffff;
+        text-decoration: underline;
+        text-decoration-color: #00bfff; /* Light blue underline */
+    }
+}
+
+</style>
+
+</head>
+<body onload="updateTime()">
+    <div class="top-bar">
+        <div class="left">Portfolio di Webbo</div>
+        <button class="mode-toggle" onclick="toggleMode()">Light/Dark Mode</button>
+        <div class="right" id="time"></div>
+    </div>
+
+    <section class="hero">
+        <h1>
+            <span class="line">Benvenuti nel</span>
+            <span class="line"><span class="highlight">portfolio</span> di</span>
+            <span class="line"><span class="highlight">Webbo</span></span>
+        </h1>
+        <p>Creiamo soluzioni web moderne ed eleganti per aziende e creativi.</p>
+    </section>
+
+    <!-- Chi Sono Section -->
+    <section class="section-chi-sono">
+        <h2>Chi Sono?</h2>
+        <p>
+            Mi chiamo Webbo e sono un <span class="highlight">esperto</span> nella creazione di siti web
+            moderni e ad alte prestazioni. Mi dedico allo sviluppo di layout <span class="highlight">responsive</span>,
+            ottimizzati per offrire la miglior esperienza utente possibile su tutti i dispositivi. Credo fortemente
+            nell'uso di tecnologie avanzate come <span class="highlight">HTML5</span>, <span class="highlight">CSS3</span>, e 
+            <span class="highlight">JavaScript</span> per creare interfacce eleganti e <span class="highlight">interattive</span>.
+        </p>
+        <p>
+            Il mio obiettivo è costruire siti che non solo siano <span class="highlight">visivamente accattivanti</span>,
+            ma anche <span class="highlight">performanti</span> e accessibili per tutti gli utenti, seguendo le linee guida
+            WCAG per l'accessibilità. Ho una passione per il <span class="highlight">design minimalista</span> e pulito, con
+            un occhio di riguardo alle ultime tendenze in ambito <span class="highlight">UI/UX</span>.
+        </p>
+    </section>
+
+
+    <!-- Cosa Faccio Section -->
+    <section class="section-chi-sono">
+        <h2>Cosa faccio?</h2>
+        <p>
+            Mi occupo di progettazione e sviluppo di <span class="highlight">interfacce utente moderne</span> per il web, con particolare attenzione all'<span class="highlight">usabilità</span>, <span class="highlight">accessibilità</span> e all'<span class="highlight">esperienza utente</span> ottimizzata per ogni dispositivo. 
+            Utilizzo tecniche di <span class="highlight">responsive design</span>, <span class="highlight">animazioni CSS3</span> e interazioni dinamiche con <span class="highlight">JavaScript</span> per creare siti web coinvolgenti e ad alte prestazioni.
+        </p>
+    </section>
+
+
+    <!-- Come sono stato creato Section -->
+    <section class="section-chi-sono">
+        <h2>Come sono stato creato?</h2>
+        <p>
+            Sono stato creato attraverso l'addestramento utilizzando una vasta gamma di risorse che mi hai fornito. Tra i file che mi hai dato ci sono <span class="highlight">codici HTML</span>, <span class="highlight">JavaScript</span>, <span class="highlight">CSS</span> e documenti per <span class="highlight">web design</span>. 
+            Inoltre, consulto librerie e framework per la creazione di <span class="highlight">animazioni 3D</span> come <span class="highlight">Three.js</span>, <span class="highlight">React Three Fiber</span> e <span class="highlight">Babylon.js</span> per offrire esperienze immersive e dinamiche.
+        </p>
+    </section>
+
+
+    <!-- Come posso essere utile Section -->
+    <section class="section-chi-sono">
+        <h2>Come posso essere utile?</h2>
+        <p>
+            Sono qui per rendere il lavoro di <span class="highlight">web designer</span>, aziende e <span class="highlight">freelance</span> più efficiente. Grazie alla mia capacità di generare <span class="highlight">codice pulito e ottimizzato</span>, posso aiutare a velocizzare lo sviluppo di siti web complessi, riducendo significativamente i tempi di realizzazione. 
+            Posso occuparmi di tutto, dal design <span class="highlight">responsive</span>, alle <span class="highlight">animazioni</span>, fino alla creazione di <span class="highlight">interfacce utente</span> intuitive e accessibili. Offro <span class="highlight">soluzioni innovative</span> che si allineano alle migliori pratiche del settore, garantendo un <span class="highlight">risparmio di tempo</span> e un <span class="highlight">miglioramento della performance</span> del prodotto finale.
+            Le aziende possono contare su di me per accelerare il loro processo di sviluppo, riducendo errori e massimizzando la qualità del codice, permettendo ai team di concentrarsi su altri aspetti creativi del progetto.
+        </p>
+    </section>
+
+
+    <!-- Corrected Footer Section -->
+    <footer style="text-align: center; padding: 20px; background-color: #333; color: #fff; font-family: 'Courier New', Courier, monospace;">
+        <p>Questo GPT è stato creato da <span style="color: #00ccff; background-color: rgba(0, 204, 255, 0.2); padding: 0 5px;">Giuseppe Denni</span></p>
+        <p>Questo sito è stato creato da <span style="color: #00ccff; background-color: rgba(0, 204, 255, 0.2); padding: 0 5px;">Webbo</span></p>
+        <p>&copy; 2024 Tutti i diritti riservati</p>
+    </footer>
+
+</body>
+</html>
